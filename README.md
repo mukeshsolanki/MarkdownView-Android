@@ -3,7 +3,7 @@
 # MarkdownView-Android
 MarkdownView is a simple library that helps you display Markdown text or files on Android as a html page just like Github.
 
-![Demo](/Screenshots/demo.gif)
+![Demo](https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/master/Screenshots/demo.gif)
 
 ## Getting started
 
