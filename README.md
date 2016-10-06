@@ -1,6 +1,7 @@
 [ ![Download](https://api.bintray.com/packages/mukeshsolanki/maven/markdownview/images/download.svg) ](https://bintray.com/mukeshsolanki/maven/markdownview/_latestVersion)
 [![Release](https://jitpack.io/v/mukeshsolanki/MarkdownView-Android.svg)](https://jitpack.io/#mukeshsolanki/MarkdownView-Android/)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MarkdownView--Android-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3980)
+[ ![PayPal](https://img.shields.io/badge/paypal-donate-yellow.svg) ](https://www.paypal.me/mukeshsolanki)
 # MarkdownView-Android
 MarkdownView is a simple library that helps you display Markdown text or files on Android as a html page just like Github.
 
