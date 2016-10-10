@@ -1,36 +1,17 @@
 apply plugin: 'com.android.library'
-ext {
-  bintrayRepo = 'maven'
-  bintrayName = 'markdownview'
+apply plugin: 'com.github.dcendents.android-maven'
 
-  publishedGroupId = 'com.mukesh'
-  libraryName = 'markdownview'
-  artifact = 'markdownview'
+group='com.github.mukeshsolanki'
 
-  libraryDescription = 'MarkdownView is an Android webview with the capability of loading Markdown text or file and display it as HTML, it extends Android webview.'
-
-  siteUrl = 'https://github.com/mukeshsolanki/MarkdownView-Android'
-  gitUrl = 'https://github.com/mukeshsolanki/MarkdownView-Android.git'
-
-  libraryVersion = '1.0.0'
-
-  developerId = 'mukeshsolanki'
-  developerName = 'Mukesh Solanki'
-  developerEmail = 'themukeshsolanki@gmail.com'
-
-  licenseName = 'The Apache Software License, Version 2.0'
-  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-  allLicenses = ["Apache-2.0"]
-}
 android {
   compileSdkVersion 24
-  buildToolsVersion "24.0.0"
+  buildToolsVersion "24.0.3"
 
   defaultConfig {
     minSdkVersion 14
     targetSdkVersion 24
     versionCode 1
-    versionName "1.0.0"
+    versionName "1.0.1"
   }
   buildTypes {
     release {
@@ -43,6 +24,3 @@ android {
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 }
-
-apply from: 'https://raw.githubusercontent.com/mukeshsolanki/library-distribution-tasks/master/install-task.gradle'
-apply from: 'https://raw.githubusercontent.com/mukeshsolanki/library-distribution-tasks/master/bintray-upload-tasks.gradle'
