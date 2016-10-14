@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Markdownview-android by mukeshsolanki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Markdownview-android</h1>
+      <h2 class="project-tagline">MarkdownView is an Android webview with the capability of loading Markdown text or file and display it as HTML, it extends Android webview.</h2>
+      <a href="https://github.com/mukeshsolanki/MarkdownView-Android" class="btn">View on GitHub</a>
+      <a href="https://github.com/mukeshsolanki/MarkdownView-Android/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mukeshsolanki/MarkdownView-Android/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1 align="center">
+<a id="markdownview" class="anchor" href="#markdownview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MarkdownView</h1>
+
+<p align="center">
+  <a href="https://android-arsenal.com/api?level=14"> <img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat"></a>
+  <a href="https://jitpack.io/#mukeshsolanki/MarkdownView-Android/"> <img src="https://jitpack.io/v/mukeshsolanki/MarkdownView-Android.svg"></a>
+  <a href="http://android-arsenal.com/details/1/3980"> <img src="https://img.shields.io/badge/Android%20Arsenal-MarkdownView--Android-brightgreen.svg?style=flat"></a>
+  <a href="https://travis-ci.org/mukeshsolanki/MarkdownView-Android"> <img src="https://travis-ci.org/mukeshsolanki/MarkdownView-Android.svg?branch=master"></a>
+  <a href="https://www.paypal.me/mukeshsolanki"> <img src="https://img.shields.io/badge/paypal-donate-yellow.svg"></a>
+  <br><br>  
+    MarkdownView is a simple library that helps you display Markdown text or files on Android as a html page just like Github.
+</p>
+
+<p><img src="https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/master/Screenshots/demo.gif" alt="Demo"></p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
+
+<p>Its really simple to integrate <em>MarkdownView</em> in android. All you need to do make the following change to you build gradle under the app module.</p>
+
+<p>Step 1. Add the JitPack repository to your build file. Add it in your root build.gradle at the end of repositories:</p>
+
+<div class="highlight highlight-source-java"><pre>allprojects {
+  repositories {
+    <span class="pl-c1">...</span>
+    maven { url <span class="pl-s"><span class="pl-pds">"</span>https://jitpack.io<span class="pl-pds">"</span></span> }
+  }
+}</pre></div>
+
+<p>Step 2. Add the dependency</p>
+
+<div class="highlight highlight-source-java"><pre>dependencies {
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.github.mukeshsolanki:MarkdownView-Android:1.0.1<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<h2>
+<a id="how-to-use-markdownview" class="anchor" href="#how-to-use-markdownview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use MarkdownView</h2>
+
+<p>Its fairly simple and straight forward to use <em>MarkdownView</em> in you application. Just add the following in your layout where you want to display the markdown file/text.</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">com</span>.mukesh.MarkdownView
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/markdown_view<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+/&gt;</pre></div>
+
+<p>and reference it in your activity/fragment and assign the markdown text/file like wise.</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">MarkdownView</span> markdownView <span class="pl-k">=</span> (<span class="pl-smi">MarkdownView</span>) findViewById(<span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>markdown_view);
+markdownView<span class="pl-k">.</span>setMarkDownText(<span class="pl-s"><span class="pl-pds">"</span># Hello World<span class="pl-cce">\n</span>This is a simple markdown<span class="pl-pds">"</span></span>); <span class="pl-c">//Displays markdown text</span>
+<span class="pl-c1">...</span>
+markdownView<span class="pl-k">.</span>loadMarkdownFromAssets(<span class="pl-s"><span class="pl-pds">"</span>README.md<span class="pl-pds">"</span></span>); <span class="pl-c">//Loads the markdown file from the assets folder</span>
+<span class="pl-c1">...</span>
+<span class="pl-smi">File</span> markdownFile<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-smi">File</span>(<span class="pl-s"><span class="pl-pds">"</span>filePath<span class="pl-pds">"</span></span>);
+markdownView<span class="pl-k">.</span>loadMarkdownFromFile(markdownFile); <span class="pl-c">//Loads the markdown file.</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mukeshsolanki/MarkdownView-Android">Markdownview-android</a> is maintained by <a href="https://github.com/mukeshsolanki">mukeshsolanki</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
