@@ -105,6 +105,7 @@ public class MarkdownView extends WebView {
     } else {
       mPreviewText = String.format("preview('%s')", escMdText);
     }
+    initialize();
   }
 
   private String escapeForText(String mdText) {
