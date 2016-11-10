@@ -2,6 +2,8 @@ package com.mukesh;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Base64;
@@ -24,7 +26,9 @@ public class MarkdownView extends WebView {
   private static final String TAG = MarkdownView.class.getSimpleName();
   private static final String IMAGE_PATTERN = "!\\[(.*)\\]\\((.*)\\)";
 
+  private final Context mContext;
   private String mPreviewText;
+  private boolean mIsOpenUrlInBrowser;
 
   public MarkdownView(Context context) {
     this(context, null);
@@ -36,6 +40,7 @@ public class MarkdownView extends WebView {
 
   public MarkdownView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    mContext = context;
     initialize();
   }
 
@@ -47,6 +52,15 @@ public class MarkdownView extends WebView {
         } else {
           evaluateJavascript(mPreviewText, null);
         }
+      }
+
+      @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (isOpenUrlInBrowser()) {
+          Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+          mContext.startActivity(intent);
+          return true;
+        }
+        return false;
       }
     });
     loadUrl("file:///android_asset/html/preview.html");
@@ -165,5 +179,13 @@ public class MarkdownView extends WebView {
     } else {
       return "";
     }
+  }
+
+  public boolean isOpenUrlInBrowser() {
+    return mIsOpenUrlInBrowser;
+  }
+
+  public void setOpenUrlInBrowser(boolean openUrlInBrowser) {
+    mIsOpenUrlInBrowser = openUrlInBrowser;
   }
 }
