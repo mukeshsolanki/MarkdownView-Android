@@ -52,7 +52,12 @@ public class MarkdownView extends WebView {
         @JavascriptInterface
         public void loaded() {
             if (contentLoadListener != null) {
-                contentLoadListener.onContentLoaded();
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        contentLoadListener.onContentLoaded();
+                    }
+                });
             }
         }
     }
