@@ -245,7 +245,7 @@ public class MarkdownView extends WebView {
         this.contentLoadListener = contentLoadListener;
     }
 
-    interface OnContentLoadListener {
+    public interface OnContentLoadListener {
         void onContentLoaded();
     }
 }
