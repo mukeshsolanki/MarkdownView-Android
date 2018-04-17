@@ -2,7 +2,6 @@
 <p align="center">
   <a href="https://jitpack.io/#mukeshsolanki/MarkdownView-Android"><img src="https://jitpack.io/v/mukeshsolanki/MarkdownView-Android/month.svg"/></a>
   <a href="https://android-arsenal.com/api?level=14"> <img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" /></a>
-  <a href="https://android-arsenal.com/api?level=14"> <img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" /></a>
   <a href="https://jitpack.io/#mukeshsolanki/MarkdownView-Android/"> <img src="https://jitpack.io/v/mukeshsolanki/MarkdownView-Android.svg" /></a>
   <a href="http://android-arsenal.com/details/1/3980"> <img src="https://img.shields.io/badge/Android%20Arsenal-MarkdownView--Android-brightgreen.svg?style=flat" /></a>
   <a href="https://travis-ci.org/mukeshsolanki/MarkdownView-Android"> <img src="https://travis-ci.org/mukeshsolanki/MarkdownView-Android.svg?branch=master" /></a>
