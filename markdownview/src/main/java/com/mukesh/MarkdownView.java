@@ -140,7 +140,7 @@ public class MarkdownView extends WebView {
       return mdText;
     }
     String baseType = imgEx2BaseType(imgPath);
-    if (baseType.equals("")) {
+    if ("".equals(baseType)) {
       return mdText;
     }
     File file = new File(imgPath);
