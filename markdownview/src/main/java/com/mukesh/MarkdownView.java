@@ -148,14 +148,22 @@ public class MarkdownView extends WebView {
         }
         File file = new File(imgPath);
         byte[] bytes = new byte[(int) file.length()];
+        BufferedInputStream buf = null;
         try {
-            BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
+            buf = new BufferedInputStream(new FileInputStream(file));
             buf.read(bytes, 0, bytes.length);
-            buf.close();
         } catch (FileNotFoundException e) {
             Log.e(TAG, "FileNotFoundException:" + e);
         } catch (IOException e) {
             Log.e(TAG, "IOException:" + e);
+        } finally {
+            if (buf != null) {
+                try {
+                    buf.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "IOException:" + e);
+                }
+            }
         }
         String base64Img = baseType + Base64.encodeToString(bytes, Base64.NO_WRAP);
         return mdText.replace(imgPath, base64Img);
