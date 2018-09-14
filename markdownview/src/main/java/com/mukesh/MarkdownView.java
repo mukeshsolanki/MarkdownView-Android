@@ -25,10 +25,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MarkdownView extends WebView {
-    public interface OnMarkdownRenderingListener {
-        void onMarkdownFinishedRendering();
-    }
-
     private static final String TAG = MarkdownView.class.getSimpleName();
     private static final String IMAGE_PATTERN = "!\\[(.*)\\]\\((.*)\\)";
     private static final String HTML_PREVIEW_LOCATION = "file:///android_asset/html/preview.html";
@@ -52,7 +48,7 @@ public class MarkdownView extends WebView {
         mContext = context;
     }
 
-    public void setOnMarkdownRenderingListener (OnMarkdownRenderingListener mOnMarkdownRenderingListener) {
+    public void setOnMarkdownRenderingListener(OnMarkdownRenderingListener mOnMarkdownRenderingListener) {
         this.mOnMarkdownRenderingListener = mOnMarkdownRenderingListener;
     }
 
@@ -240,5 +236,9 @@ public class MarkdownView extends WebView {
     protected void onDetachedFromWindow() {
         mOnMarkdownRenderingListener = null;
         super.onDetachedFromWindow();
+    }
+
+    public interface OnMarkdownRenderingListener {
+        void onMarkdownFinishedRendering();
     }
 }
