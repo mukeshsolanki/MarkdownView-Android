@@ -8,6 +8,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
+import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,12 +25,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MarkdownView extends WebView {
+    public interface OnMarkdownRenderingListener {
+        void onMarkdownFinishedRendering();
+    }
+
     private static final String TAG = MarkdownView.class.getSimpleName();
     private static final String IMAGE_PATTERN = "!\\[(.*)\\]\\((.*)\\)";
+    private static final String HTML_PREVIEW_LOCATION = "file:///android_asset/html/preview.html";
 
     private final Context mContext;
     private String mPreviewText;
     private boolean mIsOpenUrlInBrowser;
+
+    private OnMarkdownRenderingListener mOnMarkdownRenderingListener;
 
     public MarkdownView(Context context) {
         this(context, null);
@@ -42,7 +50,26 @@ public class MarkdownView extends WebView {
     public MarkdownView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        initialize();
+    }
+
+    public void setOnMarkdownRenderingListener (OnMarkdownRenderingListener mOnMarkdownRenderingListener) {
+        this.mOnMarkdownRenderingListener = mOnMarkdownRenderingListener;
+    }
+
+    @Override
+    public void loadUrl(String url) {
+        super.loadUrl(url);
+        if (mOnMarkdownRenderingListener != null && !url.equals(HTML_PREVIEW_LOCATION)) {
+            mOnMarkdownRenderingListener.onMarkdownFinishedRendering();
+        }
+    }
+
+    @Override
+    public void evaluateJavascript(String script, ValueCallback<String> resultCallback) {
+        super.evaluateJavascript(script, resultCallback);
+        if (mOnMarkdownRenderingListener != null) {
+            mOnMarkdownRenderingListener.onMarkdownFinishedRendering();
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -66,7 +93,7 @@ public class MarkdownView extends WebView {
                 return false;
             }
         });
-        loadUrl("file:///android_asset/html/preview.html");
+        loadUrl(HTML_PREVIEW_LOCATION);
         getSettings().setJavaScriptEnabled(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             getSettings().setAllowUniversalAccessFromFileURLs(true);
@@ -207,5 +234,11 @@ public class MarkdownView extends WebView {
 
     public void setOpenUrlInBrowser(boolean openUrlInBrowser) {
         mIsOpenUrlInBrowser = openUrlInBrowser;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mOnMarkdownRenderingListener = null;
+        super.onDetachedFromWindow();
     }
 }
