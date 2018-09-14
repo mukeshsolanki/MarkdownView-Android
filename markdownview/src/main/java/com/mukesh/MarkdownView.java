@@ -99,10 +99,11 @@ public class MarkdownView extends WebView {
     }
 
     public void loadMarkdownFromAssets(String assetsFilePath) {
+        BufferedReader in = null;
         try {
             StringBuilder buf = new StringBuilder();
             InputStream json = getContext().getAssets().open(assetsFilePath);
-            BufferedReader in = new BufferedReader(new InputStreamReader(json, "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(json, "UTF-8"));
             String str;
             while ((str = in.readLine()) != null) {
                 buf.append(str).append("\n");
@@ -110,7 +111,15 @@ public class MarkdownView extends WebView {
             in.close();
             setMarkDownText(buf.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "IOException:" + e);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "IOException:" + e);
+                }
+            }
         }
     }
 
