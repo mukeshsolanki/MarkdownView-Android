@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.mukeshsolanki'
 
@@ -9,8 +8,8 @@ android {
   defaultConfig {
     minSdkVersion 14
     targetSdkVersion 28
-    versionCode 7
-    versionName "1.0.7"
+    versionCode 8
+    versionName "1.0.8"
   }
   buildTypes {
     release {
