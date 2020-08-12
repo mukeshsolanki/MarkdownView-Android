@@ -3,11 +3,11 @@ apply plugin: 'com.android.library'
 group = 'com.github.mukeshsolanki'
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion 29
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 28
+    targetSdkVersion 29
     versionCode 8
     versionName "1.0.8"
   }
