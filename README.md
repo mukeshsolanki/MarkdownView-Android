@@ -3,7 +3,7 @@
   <a class="badge-align" href="https://www.codacy.com/app/mukeshsolanki/MarkdownView-Android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mukeshsolanki/MarkdownView-Android&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/58e51bc418d349499b3eac9c3f6f3ef1"/></a>
   <a href="https://jitpack.io/#mukeshsolanki/MarkdownView-Android"><img src="https://jitpack.io/v/mukeshsolanki/MarkdownView-Android/month.svg"/></a>
   <a href="https://jitpack.io/#mukeshsolanki/MarkdownView-Android/"> <img src="https://jitpack.io/v/mukeshsolanki/MarkdownView-Android.svg" /></a>
-  <a href="https://circleci.com/gh/mukeshsolanki/MarkdownView-Android/tree/master"> <img src="https://circleci.com/gh/mukeshsolanki/MarkdownView-Android/tree/master.svg?style=shield" /></a>
+  <a href="https://github.com/mukeshsolanki/MarkdownView-Android/actions"> <img src="https://github.com/mukeshsolanki/MarkdownView-Android/workflows/Build/badge.svg" /></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
   <br /><br />
     MarkdownView is a simple library that helps you display Markdown text or files on Android as a html page just like Github.
