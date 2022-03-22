@@ -1,4 +1,4 @@
-<h1 align="center">MarkdownView</h1>
+<h1 align="center">Compose Markdown View</h1>
 <p align="center">
   <a class="badge-align" href="https://www.codacy.com/app/mukeshsolanki/MarkdownView-Android?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mukeshsolanki/MarkdownView-Android&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/58e51bc418d349499b3eac9c3f6f3ef1"/></a>
   <a href="https://jitpack.io/#mukeshsolanki/MarkdownView-Android"><img src="https://jitpack.io/v/mukeshsolanki/MarkdownView-Android/month.svg"/></a>
@@ -6,27 +6,22 @@
   <a href="https://github.com/mukeshsolanki/MarkdownView-Android/actions"> <img src="https://github.com/mukeshsolanki/MarkdownView-Android/workflows/Build/badge.svg" /></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
   <br /><br />
-    MarkdownView is a simple library that helps you display Markdown text or files on Android as a html page just like Github.
+    MarkdownView is a composable library that helps you display Markdown text or files on Android as a html page just like Github.
 </p>
-
 
 ![Demo](https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/master/Screenshots/demo.gif)
 
-# Supporting MarkdownView
+# Supporting Compose Markdown View
 
-MarkdownView is an independent project with ongoing development and support made possible thanks to donations made by [these awesome backers](BACKERS.md#sponsors). If you'd like to join them, please consider:
-
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/mukeshsolanki).
-- [One-time donation via PayPal](https://www.paypal.me/mukeshsolanki)
-
-<a href="https://www.patreon.com/bePatron?c=935498" alt="Become a Patron"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
+Compose Markdown View is an independent project with ongoing development and support made possible thanks to your donations.
+- [Become a backer](https://www.paypal.me/mukeshsolanki)
 
 ## Getting started
-Its really simple to integrate *MarkdownView* in android. All you need to do make the following change to you build gradle under the app module.
+Its really simple to integrate *Markdown* in android. All you need to do make the following change to you build gradle under the app module.
 
 Step 1. Add the JitPack repository to your build file. Add it in your root build.gradle at the end of repositories:
 
-```java
+```kotlin
 allprojects {
   repositories {
     ...
@@ -36,33 +31,74 @@ allprojects {
 ```
 
 Step 2. Add the dependency
-```java
+```kotlin
 dependencies {
-    implementation 'com.github.mukeshsolanki:MarkdownView-Android:<latest-version>'
+    implementation 'com.github.mukeshsolanki:MarkdownView-Android:2.0.0'
 }
 ```
 
-## How to use MarkdownView
+## How to use Markdown
+Its fairly simple and straight forward to use *Markdown* in you application.
 
-Its fairly simple and straight forward to use *MarkdownView* in you application. Just add the following in your layout where you want to display the markdown file/text.
+- Using Compose
 
+Just use `MarkDown` composable where you need to display the view like
+```kotlin
+MarkDown(
+    url = URL("https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/main/README.md"),
+    modifier = Modifier.fillMaxSize()
+)
+```
+
+- Using Older View System (aka XML)
+
+Add a compose view in your xml file like
 ```XML
-<com.mukesh.MarkdownView
-    android:id="@+id/markdown_view"
+<androidx.compose.ui.platform.ComposeView
+    android:id="@+id/markdown"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-/>
+    android:layout_height="match_parent" />
 ```
 
 and reference it in your activity/fragment and assign the markdown text/file like wise.
-```Java
-MarkdownView markdownView = (MarkdownView) findViewById(R.id.markdown_view);
-markdownView.setMarkDownText("# Hello World\nThis is a simple markdown"); //Displays markdown text
-...
-markdownView.loadMarkdownFromAssets("README.md"); //Loads the markdown file from the assets folder
-...
-File markdownFile=new File("filePath");
-markdownView.loadMarkdownFromFile(markdownFile); //Loads the markdown file.
+```kotlin
+val markdown = findViewById(R.id.markdown)
+markdown.composeView.apply {
+    // Dispose of the Composition when the view's LifecycleOwner is destroyed
+    setViewCompositionStrategy(DisposeOnViewTreeLifecycleDestroyed)
+    setContent {
+       // In Compose world
+       MaterialTheme {
+            MarkDown(
+                url = URL("https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/main/README.md"),
+                modifier = Modifier.fillMaxSize()
+            )
+       }
+    }
+}
+```
+## Markdown Sources
+You have 3 different sources from where markdown data can be read
+- `Text` - You can pass the content and string to render the markdown
+```kotlin
+MarkDown(
+    text = "# Test Markdown",
+    modifier = Modifier.fillMaxSize()
+)
+```
+- `File` - You can read from a file and display the markdown data.
+```kotlin
+MarkDown(
+    file = file,
+    modifier = Modifier.fillMaxSize()
+)
+```
+- `URL` - You can also specify the url of the markdown file.
+```kotlin
+MarkDown(
+    url = URL("https://raw.githubusercontent.com/mukeshsolanki/MarkdownView-Android/main/README.md"),
+    modifier = Modifier.fillMaxSize()
+)
 ```
 
 ## Author
@@ -72,7 +108,6 @@ Maintained by [Mukesh Solanki](https://www.github.com/mukeshsolanki)
 [![GitHub contributors](https://img.shields.io/github/contributors/mukeshsolanki/MarkdownView-Android.svg)](https://github.com/mukeshsolanki/MarkdownView-Android/graphs/contributors)
 
 * Bug reports and pull requests are welcome.
-* Make sure you use [square/java-code-styles](https://github.com/square/java-code-styles) to format your code.
 
 ## License
 ```
