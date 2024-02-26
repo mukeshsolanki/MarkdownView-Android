@@ -31,7 +31,8 @@ private const val TAG = "MarkDown"
 fun MarkDown(
     modifier: Modifier = Modifier,
     text: String,
-    shouldOpenUrlInBrowser: Boolean = true
+    shouldOpenUrlInBrowser: Boolean = true,
+    isDarkTheme: Boolean = false,
 ) {
     val bs64MdText: String = imgToBase64(text)
     val escMdText: String = escapeForText(bs64MdText)
@@ -58,7 +59,10 @@ fun MarkDown(
                     return false
                 }
             }
-            loadUrl("file:///android_asset/html/preview.html")
+            if(isDarkTheme)
+                loadUrl("file:///android_asset/html/dark_preview.html")
+            else
+                loadUrl("file:///android_asset/html/preview.html")
             @SuppressLint("SetJavaScriptEnabled")
             settings.javaScriptEnabled = true
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
@@ -76,7 +80,8 @@ fun MarkDown(
 fun MarkDown(
     modifier: Modifier = Modifier,
     file: File,
-    shouldOpenUrlInBrowser: Boolean = true
+    shouldOpenUrlInBrowser: Boolean = true,
+    isDarkTheme: Boolean = false,
 ) {
     var mdText = ""
     try {
@@ -99,7 +104,8 @@ fun MarkDown(
     MarkDown(
         text = mdText,
         modifier = modifier,
-        shouldOpenUrlInBrowser = shouldOpenUrlInBrowser
+        shouldOpenUrlInBrowser = shouldOpenUrlInBrowser,
+        isDarkTheme = isDarkTheme,
     )
 }
 
@@ -113,7 +119,8 @@ fun MarkDown(
 fun MarkDown(
     modifier: Modifier = Modifier,
     url: URL,
-    shouldOpenUrlInBrowser: Boolean = true
+    shouldOpenUrlInBrowser: Boolean = true,
+    isDarkTheme: Boolean = false,
 ) {
     val urlContent = remember { mutableStateOf("") }
     thread {
@@ -130,7 +137,8 @@ fun MarkDown(
         MarkDown(
             text = urlContent.value,
             modifier = modifier,
-            shouldOpenUrlInBrowser = shouldOpenUrlInBrowser
+            shouldOpenUrlInBrowser = shouldOpenUrlInBrowser,
+            isDarkTheme = isDarkTheme,
         )
     }
 }
